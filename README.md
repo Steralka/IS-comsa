@@ -173,12 +173,19 @@
 * `cmin` — идентификатор команды, создавшей запись
 * `cmax` — идентификатор команды, удалившей запись
 
-## НУЖНО РАССПИСАТЬ 
-
+** Функции возвращают ID текущей транзакции (XID)**
 - `pg_current_xact_id()`
 - `txid_current()`
 - `txid_current_if_assigned()`
 - `pg_current_xact_id_if_assigned()`
+
+| Функция                            | Назначает XID | Если XID ещё нет | Тип    |
+| ---------------------------------- | ------------- | ---------------- | ------ |
+| `pg_current_xact_id()`             | да            | создаст          | xid8   |
+| `txid_current()`                   | да            | создаст          | bigint |
+| `txid_current_if_assigned()`       | нет           | NULL             | bigint |
+| `pg_current_xact_id_if_assigned()` | нет           | NULL             | xid8   |
+
 
 ## 4. Реализация транзакций в PostgreSQL
 
@@ -294,3 +301,6 @@ VACUUM:
 - autovacuum_cost_limit - Это ограничение нагрузки autovacuum
 
 Формула запуска autovacuum PostgreSQL использует формулу: `autovacuum_vacuum_threshold + (table_rows × autovacuum_vacuum_scale_factor)`
+
+------------------
+## 1. Java EE Full Profle
